@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-2.0-flash")
+model = genai.GenerativeModel("models/gemini-2.5-flash")
 
 PROMPT = """Extract the following from this discharge document into ONLY valid JSON, no other text, no markdown:
 {
@@ -34,7 +34,7 @@ def extract(image_path):
     return response.text
 
 if __name__ == "__main__":
-    path = "test_documents/mock1_pneumonia.jpg"
+    path = "test_documents/metformin_error.png"
     result = extract(path)
     print("RAW OUTPUT:\n", result)
     print("\nPARSED:\n", json.dumps(json.loads(result), indent=2))
